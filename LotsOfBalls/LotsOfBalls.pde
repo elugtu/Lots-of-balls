@@ -12,8 +12,8 @@
 //int[] numbers = new int[200];
 
 //declare variables
-int count = 300;
 
+int count = 300;
 
 float[] x = new float[count];
 float[] y = new float[count];
@@ -23,8 +23,12 @@ float[] diam = new float[count];
 
 
 void setup() {
+  
   //set size of canvas
+  
   size(800, 600);
+  noStroke();
+  frameRate(20);
   
   //initialize variables
   
@@ -39,22 +43,25 @@ void setup() {
 }
 
 void draw() {
+  
   //draw background to cover previous frame
+  
   background(0);
 
 
 for(int i = 0; i < count; i++){
-  //draw ball
-  ellipse(x[i], y[i], diam[i], diam[i]);
   
+  //draw ball
+  
+  fill(0, random(255), random(150));
+  ellipse(x[i], y[i], diam[i], diam[i]);
 
   //add velocity to position
+  
   x[i] += velX[i];
   y[i] += velY[i];  
    
-
   //bounce ball if it hits walls
-  
   
   if (x[i] + diam[i]/2 >= width) {
     velX[i] = -abs(velX[i]);    //if the ball hits the right wall, assign x velocity the negative version of itself
@@ -68,7 +75,5 @@ for(int i = 0; i < count; i++){
   }
    
   }
-  
-  
   
 }
