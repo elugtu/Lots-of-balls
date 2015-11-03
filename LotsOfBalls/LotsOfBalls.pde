@@ -1,56 +1,78 @@
+//declaring arrays
+//int[] numbers; 
+//color[] c;
+//float[] n;
+
+//initializing arrays 
+//numbers = new int[10];  //the list called numbers will create a new integer array with 10 spots
+//c = new color[5];
+//n = {35.6, 41.7, 2.0001};  //these are the values of all these three things
+
+//delaring and initializing arrays
+//int[] numbers = new int[200];
+
 //declare variables
-float x, y, velX, velY, diam;
-float a, b, velA, velB, diam2;
+int count = 300;
+
+
+float[] x = new float[count];
+float[] y = new float[count];
+float[] velX = new float[count];
+float[] velY = new float[count];
+float[] diam = new float[count];
+
 
 void setup() {
   //set size of canvas
   size(800, 600);
-
+  int i = 0;
+  
   //initialize variables
-  x = width/2;
-  y = height/2;
-  diam = 80;
-  diam2 = 40;
-  velX = random(-5, 5);
-  velY = random(-5, 5);
-  velA = random(-3, 3);
-  velB = random(-3, 3);
+  while(i < count){
+    x[i] = random(width);
+    y[i] = random(height);
+    diam[i] = random(5, 100);
+    velX[i] = random(-5, 5);
+    velY[i] = random(-5, 5);
+    i++;
+  }
+  
 }
 
 void draw() {
   //draw background to cover previous frame
   background(0);
 
+int i = 0; 
+
+while (i < count){
   //draw ball
-  ellipse(x, y, diam, diam);
-  ellipse(a, b, diam2, diam2);
+  ellipse(x[i], y[i], diam[i], diam[i]);
+  
 
   //add velocity to position
-  x += velX;
-  y += velY;
-  a += velA;
-  b += velB;
+  x[i] += velX[i];
+  y[i] += velY[i];  
+   
 
   //bounce ball if it hits walls
-  if (x + diam/2 >= width) {
-    velX = -abs(velX);    //if the ball hits the right wall, assign x velocity the negative version of itself
-  } else if (x - diam/2 <= 0) {
-    velX = abs(velX);     //if the ball hits the left wall, assign x velocity the positive version of itself
+  
+  
+  if (x[i] + diam[i]/2 >= width) {
+    velX[i] = -abs(velX[i]);    //if the ball hits the right wall, assign x velocity the negative version of itself
+  } else if (x[i] - diam[i]/2 <= 0) {
+    velX[i] = abs(velX[i]);     //if the ball hits the left wall, assign x velocity the positive version of itself
   }
-  if (y + diam/2 >= height) {
-    velY = -abs(velY);
-  } else if (y - diam/2 <= 0) {
-    velY = abs(velY);
+  if (y[i] + diam[i]/2 >= height) {
+    velY[i] = -abs(velY[i]);
+  } else if (y[i] - diam[i]/2 <= 0) {
+    velY[i] = abs(velY[i]);
   }
   
-  if (a + diam2/2 >= width) {
-    velA = -abs(velA);    //if the ball hits the right wall, assign x velocity the negative version of itself
-  } else if (a - diam2/2 <= 0) {
-    velA = abs(velA);     //if the ball hits the left wall, assign x velocity the positive version of itself
+  i++;
+  
   }
-  if (b + diam2/2 >= height) {
-    velB = -abs(velB);
-  } else if (b - diam2/2 <= 0) {
-    velB = abs(velB);
-  }
+  
+  
+  
 }
